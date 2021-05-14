@@ -18,14 +18,30 @@ public class ValidatePasswordTest {
 
     @Test
     @DisplayName("Minimum length is valid")
-    public void testPasswordLengthMinimum2(){
+    public void testPasswordLengthMinimum1(){
         assertTrue(testPassword.checkPassword("hasvalidlength"));
     }
     @Test
     @DisplayName("Minimum length is too short")
-    public void testPasswordLengthMinimum(){
-        assertTrue(testPassword.checkPassword("short"));
+    public void testPasswordLengthMinimum2(){
+        assertFalse(testPassword.checkPassword("short"));
     }
+    @Test
+    @DisplayName("Maximum length is valid")
+    public void testPasswordLengthMaximum1(){
+        assertTrue(testPassword.checkPassword("thisisavalidlengthpassw"));
+    }
+    @Test
+    @DisplayName("Maximum length is not valid")
+    public void testPasswordLengthMaximum2(){
+        assertFalse(testPassword.checkPassword("thisisnotavalidlengthpassw"));
+    }
+    @Test
+    @DisplayName("This password has only lower case letters")
+    public void testIfOnlyLowerCase(){
+        assertFalse(testPassword.checkPassword("thisisabadpassword"));
+    }
+
 
 
 
