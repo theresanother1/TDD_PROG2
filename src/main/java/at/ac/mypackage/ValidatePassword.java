@@ -50,6 +50,11 @@ public class ValidatePassword {
         return valid;
     }
 
+    /**
+     *
+     *TODO: implement hasLetters -> check for String to contain letters
+     * at least one lower & one upper case
+     */
     public boolean hasLetters(String userPassword){
         return false;
     }

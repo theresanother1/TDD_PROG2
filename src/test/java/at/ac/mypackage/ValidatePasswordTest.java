@@ -72,10 +72,14 @@ public class ValidatePasswordTest {
         assertFalse(testPassword.hasNumbers("hasnonumbers"));
     }
 
+    /**
+     * TODO: proper check for special chars without invalidating
+     * itself with correct letters
+     */
     @Test
     @DisplayName("Password has special characters")
     public void testForSpecialCharacters1(){
-        assertTrue(testPassword.hasAllowedSpecialCharacters("()#$?!%/@"));
+        assertTrue(testPassword.hasAllowedSpecialCharacters("()#$?!othes%/@"));
     }
 
     @Test
