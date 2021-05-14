@@ -36,6 +36,20 @@ public class ValidatePasswordTest {
     public void testPasswordLengthMaximum2(){
         assertFalse(testPassword.checkValidLength("thisisnotavalidlengthpassw"));
     }
+
+    @Test
+    @DisplayName("Password has letter")
+    public void testIfPasswordContainsLetters1(){
+        assertTrue(testPassword.hasLetters("this9$hasLetters"));
+    }
+    @Test
+    @DisplayName("Password has no letters")
+    public void testIfPasswordContainsLetters2(){
+        assertFalse(testPassword.hasLetters("1856393@#"));
+    }
+
+
+
     @Test
     @DisplayName("This password has only lower case letters")
     public void testIfOnlyLowerCase(){
@@ -57,6 +71,28 @@ public class ValidatePasswordTest {
     public void testIfThereAreNumbers2(){
         assertFalse(testPassword.hasNumbers("hasnonumbers"));
     }
+
+    @Test
+    @DisplayName("Password has special characters")
+    public void testForSpecialCharacters1(){
+        assertTrue(testPassword.hasAllowedSpecialCharacters("()#$?!%/@"));
+    }
+
+    @Test
+    @DisplayName("Password has wrong special characters")
+    public void testForSpecialCharacters2(){
+        assertFalse(testPassword.hasAllowedSpecialCharacters("()#$?><!%/@"));
+    }
+    @Test
+    @DisplayName("Password has no special characters")
+    public void testForSpecialCharacters3(){
+        assertFalse(testPassword.hasAllowedSpecialCharacters("nospecialchars"));
+    }
+
+
+
+
+
     @Test
     @DisplayName("This password fulfils all criterias")
     public void fulfilsAllCriterias(){

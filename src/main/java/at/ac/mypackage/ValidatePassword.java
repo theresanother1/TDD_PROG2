@@ -1,5 +1,8 @@
 package at.ac.mypackage;
 
+import java.util.Scanner;
+import java.util.regex.*;
+
 public class ValidatePassword {
     private String myPassword;
 
@@ -47,11 +50,41 @@ public class ValidatePassword {
         return valid;
     }
 
-    public boolean hasNumbers(String userPassword){
+    public boolean hasLetters(String userPassword){
         return false;
     }
 
+    public boolean hasNumbers(String userPassword){
+        boolean valid = false;
+        char[] pw = userPassword.toCharArray();
+        for (char c:pw){
+            if(Character.isDigit(c)){
+                valid = true;
+                break;
+            }
+        }
+        return valid;
+    }
+
     public boolean hasAllowedSpecialCharacters(String userPassword){
-        return false;
+        boolean valid = false;
+        Scanner scanner = new Scanner(userPassword);
+        String pw = scanner.findInLine("[^()#$?!%/@]");
+        if (pw == null){
+            valid = true;
+        }
+       /* char[] pw = userPassword.toCharArray();
+        int specialValues=0;
+
+        for (char c:pw){
+            if (c == '(' || c==')'||c=='#'||c=='$'||
+                    c=='?'||c=='!'||c=='%'||c=='/'||c=='@'){
+                specialValues++;
+            }
+        }
+        if (specialValues>0){
+            valid = true;
+        }*/
+        return valid;
     }
 }
