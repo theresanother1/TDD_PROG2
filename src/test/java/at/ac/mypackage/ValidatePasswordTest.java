@@ -19,32 +19,48 @@ public class ValidatePasswordTest {
     @Test
     @DisplayName("Minimum length is valid")
     public void testPasswordLengthMinimum1(){
-        assertTrue(testPassword.checkPassword("hasvalidlength"));
+        assertTrue(testPassword.checkValidLength("hasvalidlength"));
     }
     @Test
     @DisplayName("Minimum length is too short")
     public void testPasswordLengthMinimum2(){
-        assertFalse(testPassword.checkPassword("short"));
+        assertFalse(testPassword.checkValidLength("short"));
     }
     @Test
     @DisplayName("Maximum length is valid")
     public void testPasswordLengthMaximum1(){
-        assertTrue(testPassword.checkPassword("thisisavalidlengthpassw"));
+        assertTrue(testPassword.checkValidLength("thisisavalidlengthpassw"));
     }
     @Test
     @DisplayName("Maximum length is not valid")
     public void testPasswordLengthMaximum2(){
-        assertFalse(testPassword.checkPassword("thisisnotavalidlengthpassw"));
+        assertFalse(testPassword.checkValidLength("thisisnotavalidlengthpassw"));
     }
     @Test
     @DisplayName("This password has only lower case letters")
     public void testIfOnlyLowerCase(){
-        assertFalse(testPassword.checkPassword("thisisabadpassword"));
+        assertFalse(testPassword.hasUpperAndLowerCases("thisisabadpassword"));
     }
     @Test
     @DisplayName("This password has only upper case letters")
-    public void testIfOnlyUpperCase(){
-        assertFalse(testPassword.checkPassword("THISISABADPASSWORD"));
+    public void testIfOnlyUpperCase() {
+        assertFalse(testPassword.hasUpperAndLowerCases("THISISABADPASSWORD"));
+    }
+
+    @Test
+    @DisplayName("Password has numbers")
+    public void testIfThereAreNumbers1(){
+        assertTrue(testPassword.hasNumbers("has89numbers"));
+    }
+    @Test
+    @DisplayName("Password has no numbers")
+    public void testIfThereAreNumbers2(){
+        assertFalse(testPassword.hasNumbers("hasnonumbers"));
+    }
+    @Test
+    @DisplayName("This password fulfils all criterias")
+    public void fulfilsAllCriterias(){
+        assertTrue(testPassword.checkPassword("A#veryGood48Password"));
     }
 
 
