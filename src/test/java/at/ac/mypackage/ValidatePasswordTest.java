@@ -41,6 +41,11 @@ public class ValidatePasswordTest {
     public void testIfOnlyLowerCase(){
         assertFalse(testPassword.checkPassword("thisisabadpassword"));
     }
+    @Test
+    @DisplayName("This password has only upper case letters")
+    public void testIfOnlyUpperCase(){
+        assertFalse(testPassword.checkPassword("THISISABADPASSWORD"));
+    }
 
 
 

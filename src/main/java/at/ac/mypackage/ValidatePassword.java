@@ -21,6 +21,15 @@ public class ValidatePassword {
         if (userPassword.length() > 8 && userPassword.length() < 25){
             checkedPassword = true;
         }
+        int upperCaseCheck = 0;
+        for (int i = 0; i < userPassword.length(); i++){
+            if (Character.isUpperCase(userPassword.charAt(i))){
+                upperCaseCheck++;
+            }
+        }
+        if (upperCaseCheck == 0 || upperCaseCheck == userPassword.length()){
+            checkedPassword = false;
+        }
         return checkedPassword;
     }
 }
