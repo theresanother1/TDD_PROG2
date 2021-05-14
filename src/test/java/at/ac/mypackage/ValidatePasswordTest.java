@@ -17,13 +17,15 @@ public class ValidatePasswordTest {
     }
 
     @Test
-    public void testPasswordLengthMinimum(){
-        testPassword.setMyPassword("WeAreTogether@inThis90");
-        testPassword2.setMyPassword("short");
-        int actual = testPassword2.checkPassword(testPassword2);
-        int expected = testPassword.checkPassword(testPassword);
+    @DisplayName("Minimum length is valid")
+    public void testPasswordLengthMinimum2(){
+        assertTrue(testPassword.checkPassword("hasvalidlength"));
     }
-
+    @Test
+    @DisplayName("Minimum length is too short")
+    public void testPasswordLengthMinimum(){
+        assertTrue(testPassword.checkPassword("short"));
+    }
 
 
 

@@ -16,4 +16,8 @@ public class ValidatePassword {
         this.myPassword = myPassword;
     }
 
+    public boolean checkPassword(String userPassword){
+        boolean checkedPassword =false;
+        return checkedPassword;
+    }
 }
