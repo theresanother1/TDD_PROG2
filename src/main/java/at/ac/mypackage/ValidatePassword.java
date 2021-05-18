@@ -102,7 +102,6 @@ public class ValidatePassword {
     }
 
     public boolean checkForAscendingNumbers(String userPassword){
-       // boolean valid;
             char[] pw = userPassword.toCharArray();
             int firstNumber, secNumber, thirdNumber;
             for (int i = 0; i < pw.length; i++){
@@ -122,5 +121,26 @@ public class ValidatePassword {
                 }
             }
             return true;
+    }
+
+    public boolean checkForDescendingNumbers(String userPassword){
+        char[] pw = userPassword.toCharArray();
+        int firstNumber, secNumber, thirdNumber;
+        for (int i = 0; i < pw.length; i++){
+            if(Character.isDigit(pw[i])){
+                firstNumber = Character.getNumericValue(pw[i]);
+                if(Character.isDigit(pw[i+1])){
+                    secNumber = Character.getNumericValue(pw[i+1]);
+                    if(Character.isDigit(pw[i+2]) && firstNumber-secNumber == 1){
+                        thirdNumber = Character.getNumericValue(pw[i+2]);
+                        if(secNumber-thirdNumber == 1){
+                            return false;
+                        }
+
+                    }
+                }
+            }
+        }
+        return true;
     }
 }
