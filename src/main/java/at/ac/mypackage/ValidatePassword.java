@@ -1,7 +1,7 @@
 package at.ac.mypackage;
 
+import java.util.Locale;
 import java.util.Scanner;
-import java.util.regex.*;
 
 public class ValidatePassword {
     private String myPassword;
@@ -31,6 +31,9 @@ public class ValidatePassword {
 
     public boolean checkValidLength (String userPassword){
         boolean valid =false;
+        if (userPassword == null){
+            throw new IllegalArgumentException("Password should not be NULL.");
+        }
         if (userPassword.length() > 8 && userPassword.length() < 25){
             valid = true;
         }
@@ -56,7 +59,22 @@ public class ValidatePassword {
      * at least one lower & one upper case
      */
     public boolean hasLetters(String userPassword){
-        return false;
+        boolean valid = false;
+        boolean upper = false, lower = false;
+        char[] pw = userPassword.toCharArray();
+        for (char c:pw){
+            if(Character.isUpperCase(c)){
+                upper = true;
+            }
+            if (Character.isLowerCase(c)){
+                lower = true;
+            }
+            if (lower && upper){
+                valid = true;
+                break;
+            }
+        }
+        return valid;
     }
 
     public boolean hasNumbers(String userPassword){
@@ -73,23 +91,19 @@ public class ValidatePassword {
 
     public boolean hasAllowedSpecialCharacters(String userPassword){
         boolean valid = false;
-        Scanner scanner = new Scanner(userPassword);
-        String pw = scanner.findInLine("[^()#$?!%/@]");
-        if (pw == null){
-            valid = true;
-        }
-       /* char[] pw = userPassword.toCharArray();
-        int specialValues=0;
 
-        for (char c:pw){
-            if (c == '(' || c==')'||c=='#'||c=='$'||
-                    c=='?'||c=='!'||c=='%'||c=='/'||c=='@'){
-                specialValues++;
+        String checkForSymbols = "";
+        checkForSymbols = userPassword.toLowerCase().replaceAll("[()#$?!%/@]+", "");
+        System.out.println(checkForSymbols);
+        if (checkForSymbols.equals(userPassword)){
+            return valid;
+        }
+        if (!checkForSymbols.equals("")){
+            checkForSymbols = checkForSymbols.toLowerCase().replaceAll("[a-z0-9]+", "");
+            if (checkForSymbols.equals("")){
+                valid = true;
             }
         }
-        if (specialValues>0){
-            valid = true;
-        }*/
         return valid;
     }
 }

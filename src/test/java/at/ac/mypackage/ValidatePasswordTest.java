@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ValidatePasswordTest {
       private ValidatePassword testPassword;
-    private ValidatePassword testPassword2;
+      private ValidatePassword testPassword2;
 
 
     @BeforeEach
@@ -16,6 +16,13 @@ public class ValidatePasswordTest {
         testPassword2 = new ValidatePassword("xyz");
     }
 
+
+    //Password length
+    @Test
+    @DisplayName("Password is NULL.")
+    public void testIfPasswordIsNULL(){
+        assertThrows(IllegalArgumentException.class, () -> testPassword.checkValidLength(null));
+    }
     @Test
     @DisplayName("Minimum length is valid")
     public void testPasswordLengthMinimum1(){
@@ -72,12 +79,9 @@ public class ValidatePasswordTest {
         assertFalse(testPassword.hasNumbers("hasnonumbers"));
     }
 
-    /**
-     * TODO: proper check for special chars without invalidating
-     * itself with correct letters
-     */
+
     @Test
-    @DisplayName("Password has special characters")
+    @DisplayName("Password checked for special characters")
     public void testForSpecialCharacters1(){
         assertTrue(testPassword.hasAllowedSpecialCharacters("()#$?!othes%/@"));
     }
@@ -85,7 +89,7 @@ public class ValidatePasswordTest {
     @Test
     @DisplayName("Password has wrong special characters")
     public void testForSpecialCharacters2(){
-        assertFalse(testPassword.hasAllowedSpecialCharacters("()#$?><!%/@"));
+        assertFalse(testPassword.hasAllowedSpecialCharacters("()><!%/@#$?"));
     }
     @Test
     @DisplayName("Password has no special characters")
@@ -93,7 +97,11 @@ public class ValidatePasswordTest {
         assertFalse(testPassword.hasAllowedSpecialCharacters("nospecialchars"));
     }
 
-
+    @Test
+    @DisplayName("Password contains more than two ascending numbers")
+    public void testForAscendingNumbers(){
+        assertFalse(testPassword.checkForAscendingNumbers("psd931#!456oA"));
+    }
 
 
 
