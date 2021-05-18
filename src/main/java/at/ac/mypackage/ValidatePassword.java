@@ -53,11 +53,6 @@ public class ValidatePassword {
         return valid;
     }
 
-    /**
-     *
-     *TODO: implement hasLetters -> check for String to contain letters
-     * at least one lower & one upper case
-     */
     public boolean hasLetters(String userPassword){
         boolean valid = false;
         boolean upper = false, lower = false;
@@ -91,7 +86,6 @@ public class ValidatePassword {
 
     public boolean hasAllowedSpecialCharacters(String userPassword){
         boolean valid = false;
-
         String checkForSymbols = "";
         checkForSymbols = userPassword.toLowerCase().replaceAll("[()#$?!%/@]+", "");
         System.out.println(checkForSymbols);
@@ -105,5 +99,28 @@ public class ValidatePassword {
             }
         }
         return valid;
+    }
+
+    public boolean checkForAscendingNumbers(String userPassword){
+       // boolean valid;
+            char[] pw = userPassword.toCharArray();
+            int firstNumber, secNumber, thirdNumber;
+            for (int i = 0; i < pw.length; i++){
+                if(Character.isDigit(pw[i])){
+                    firstNumber = Character.getNumericValue(pw[i]);
+                    if(Character.isDigit(pw[i+1])){
+                        secNumber = Character.getNumericValue(pw[i+1]);
+                        if(Character.isDigit(pw[i+2]) && secNumber-firstNumber == 1){
+                            thirdNumber = Character.getNumericValue(pw[i+2]);
+                            if(thirdNumber-secNumber == 1){
+                               return false;
+                               // break;
+                            }
+
+                        }
+                    }
+                }
+            }
+            return true;
     }
 }

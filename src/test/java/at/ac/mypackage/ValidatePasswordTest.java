@@ -103,6 +103,12 @@ public class ValidatePasswordTest {
         assertFalse(testPassword.checkForAscendingNumbers("psd931#!456oA"));
     }
 
+    @Test
+    @DisplayName("Password contains more than two descending numbers")
+    public void testForDescendingNumbers(){
+        assertFalse(testPassword.checkForDescendingNumbers("psd931#!654oA"));
+    }
+
 
 
     @Test
