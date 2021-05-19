@@ -7,22 +7,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ValidatePasswordTest {
       private ValidatePassword testPassword;
-      private ValidatePassword testPassword2;
-
 
     @BeforeEach
     void setup(){
         testPassword = new ValidatePassword();
-        testPassword2 = new ValidatePassword("xyz");
     }
 
 
     //Password length
     @Test
     @DisplayName("Password is NULL.")
-    public void testIfPasswordIsNULL(){
-        assertThrows(IllegalArgumentException.class, () -> testPassword.checkValidLength(null));
-    }
+    public void testIfPasswordIsNULL(){ assertThrows(IllegalArgumentException.class, ()
+            -> testPassword.checkValidLength(null)); }
     @Test
     @DisplayName("Minimum length is valid")
     public void testPasswordLengthMinimum1(){
@@ -40,10 +36,9 @@ public class ValidatePasswordTest {
     }
     @Test
     @DisplayName("Maximum length is not valid")
-    public void testPasswordLengthMaximum2(){
-        assertFalse(testPassword.checkValidLength("thisisnotavalidlengthpassw"));
-    }
+    public void testPasswordLengthMaximum2(){ assertFalse(testPassword.checkValidLength("thisisnotavalidlengthpassw")); }
 
+    //check for letters inside word
     @Test
     @DisplayName("Password has letter")
     public void testIfPasswordContainsLetters1(){
@@ -55,8 +50,7 @@ public class ValidatePasswordTest {
         assertFalse(testPassword.hasLetters("1856393@#"));
     }
 
-
-
+    //test for upper & lower case requirement
     @Test
     @DisplayName("This password has only lower case letters")
     public void testIfOnlyLowerCase(){
@@ -68,6 +62,7 @@ public class ValidatePasswordTest {
         assertFalse(testPassword.hasUpperAndLowerCases("THISISABADPASSWORD"));
     }
 
+    //Test for number requirement
     @Test
     @DisplayName("Password has numbers")
     public void testIfThereAreNumbers1(){
@@ -79,13 +74,25 @@ public class ValidatePasswordTest {
         assertFalse(testPassword.hasNumbers("hasnonumbers"));
     }
 
+    //Test for number requirement extensions
+    @Test
+    @DisplayName("Password contains more than two ascending numbers")
+    public void testForAscendingNumbers(){ assertFalse(testPassword.checkForAscendingNumbers("psd931#!456oA")); }
+    @Test
+    @DisplayName("Password contains more than two descending numbers")
+    public void testForDescendingNumbers(){
+        assertFalse(testPassword.checkForDescendingNumbers("psd931#!654oA"));
+    }
+    @Test
+    @DisplayName("Password contains more than 3 numbers in a row.")
+    public void testForSameNumbersInARow(){ assertFalse(testPassword.hasLessThanThreeSameNumbersInRow("psd931#!2222A"));}
 
+    //Test for special characters
     @Test
     @DisplayName("Password checked for special characters")
     public void testForSpecialCharacters1(){
         assertTrue(testPassword.hasAllowedSpecialCharacters("()#$?!othes%/@"));
     }
-
     @Test
     @DisplayName("Password has wrong special characters")
     public void testForSpecialCharacters2(){
@@ -97,23 +104,11 @@ public class ValidatePasswordTest {
         assertFalse(testPassword.hasAllowedSpecialCharacters("nospecialchars"));
     }
 
-    @Test
-    @DisplayName("Password contains more than two ascending numbers")
-    public void testForAscendingNumbers(){
-        assertFalse(testPassword.checkForAscendingNumbers("psd931#!456oA"));
-    }
-
-    @Test
-    @DisplayName("Password contains more than two descending numbers")
-    public void testForDescendingNumbers(){
-        assertFalse(testPassword.checkForDescendingNumbers("psd931#!654oA"));
-    }
-
 
 
     @Test
     @DisplayName("This password fulfils all criterias")
-    public void fulfilsAllCriterias(){
+    public void fulfilsAllCriteria(){
         assertTrue(testPassword.checkPassword("A#veryGood48Password"));
     }
 

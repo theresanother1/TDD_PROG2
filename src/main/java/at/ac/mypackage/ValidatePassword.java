@@ -22,7 +22,8 @@ public class ValidatePassword {
     public boolean checkPassword(String userPassword){
         boolean checkedPassword =false;
         if (hasUpperAndLowerCases(userPassword) && checkValidLength(userPassword)
-                && hasNumbers(userPassword) && hasAllowedSpecialCharacters(userPassword)){
+                && hasNumbers(userPassword) && hasAllowedSpecialCharacters(userPassword)
+                && checkForAscendingNumbers(userPassword) && checkForDescendingNumbers(userPassword)){
             checkedPassword = true;
         }
 
@@ -113,9 +114,7 @@ public class ValidatePassword {
                             thirdNumber = Character.getNumericValue(pw[i+2]);
                             if(thirdNumber-secNumber == 1){
                                return false;
-                               // break;
                             }
-
                         }
                     }
                 }
@@ -136,7 +135,6 @@ public class ValidatePassword {
                         if(secNumber-thirdNumber == 1){
                             return false;
                         }
-
                     }
                 }
             }
