@@ -87,6 +87,7 @@ public class ValidatePasswordTest {
     @DisplayName("Password contains more than 3 numbers in a row.")
     public void testForSameNumbersInARow(){ assertFalse(testPassword.hasLessThanThreeSameNumbersInRow("psd931#!2222A"));}
 
+
     //Test for special characters
     @Test
     @DisplayName("Password checked for special characters")
