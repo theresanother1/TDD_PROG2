@@ -77,11 +77,11 @@ public class ValidatePasswordTest {
     //Test for number requirement extensions
     @Test
     @DisplayName("Password contains more than two ascending numbers")
-    public void testForAscendingNumbers(){ assertFalse(testPassword.checkForAscendingNumbers("psd931#!456oA")); }
+    public void testForAscendingNumbers(){ assertFalse(testPassword.checkForAscendingNumbers("psd931#!oA456")); }
     @Test
     @DisplayName("Password contains more than two descending numbers")
     public void testForDescendingNumbers(){
-        assertFalse(testPassword.checkForDescendingNumbers("psd931#!654oA"));
+        assertFalse(testPassword.checkForDescendingNumbers("psd931#!oA654"));
     }
     @Test
     @DisplayName("Password contains more than 3 numbers in a row.")

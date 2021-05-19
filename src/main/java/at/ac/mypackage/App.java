@@ -5,6 +5,7 @@ public class App {
         ValidatePassword pw = new ValidatePassword();
 
         pw.hasAllowedSpecialCharacters("nospecialchars");
-        pw.hasAllowedSpecialCharacters("%/@()#$?><!");
+        pw.checkForDescendingNumbers("%/567@()#soA$43");
+        pw.hasLessThanThreeSameNumbersInRow("%/567@()#soA1111");
     }
 }
