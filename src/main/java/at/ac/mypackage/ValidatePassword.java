@@ -28,13 +28,20 @@ public class ValidatePassword {
                 && hasNumbers(userPassword) && hasAllowedSpecialCharacters(userPassword)
                 && checkForAscendingNumbers(userPassword) && checkForDescendingNumbers(userPassword)
                 && hasLessThanThreeSameNumbersInRow(userPassword)) {
-            System.out.println("Valid Password.");
             checkedPassword = true;
+            System.out.println(showFeedback(checkedPassword));
+            return checkedPassword;
         }
-        System.out.println("Invalid Password.");
+        System.out.println(showFeedback(checkedPassword));
         return checkedPassword;
     }
 
+    String showFeedback(boolean feedback){
+        if (feedback){
+            return "Valid Password.";
+        }
+        return "Invalid Password";
+    }
     public boolean checkValidLength(String userPassword) {
         boolean valid = false;
         if (userPassword == null) {
