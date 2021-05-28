@@ -113,6 +113,13 @@ public class ValidatePasswordTest {
         assertTrue(testPassword.checkPassword("A#veryGood48Password"));
     }
 
+    @Test
+    @DisplayName("Correct Feedback")
+    public void fulfillsAllCriteriaMessageTest(){
+        String actual = testPassword.showFeedback(true);
+        String expected = "Valid Password.";
+        assertEquals(expected, actual);
+    }
 
 
 

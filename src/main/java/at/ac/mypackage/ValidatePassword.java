@@ -1,5 +1,6 @@
 package at.ac.mypackage;
 
+import java.sql.SQLOutput;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -27,9 +28,10 @@ public class ValidatePassword {
                 && hasNumbers(userPassword) && hasAllowedSpecialCharacters(userPassword)
                 && checkForAscendingNumbers(userPassword) && checkForDescendingNumbers(userPassword)
                 && hasLessThanThreeSameNumbersInRow(userPassword)) {
+            System.out.println("Valid Password.");
             checkedPassword = true;
         }
-
+        System.out.println("Invalid Password.");
         return checkedPassword;
     }
 

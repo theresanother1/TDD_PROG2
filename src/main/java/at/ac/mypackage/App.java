@@ -6,6 +6,6 @@ public class App {
 
         pw.hasAllowedSpecialCharacters("nospecialchars");
         pw.checkForDescendingNumbers("%/567@()#soA$43");
-        pw.hasLessThanThreeSameNumbersInRow("%/567@()#soA1111");
+        pw.hasLessThanThreeSameNumbersInRow("%/2222@()#soA1111");
     }
 }
