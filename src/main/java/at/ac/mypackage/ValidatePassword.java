@@ -29,9 +29,11 @@ public class ValidatePassword {
                 && checkForAscendingNumbers(userPassword) && checkForDescendingNumbers(userPassword)
                 && hasLessThanThreeSameNumbersInRow(userPassword)) {
             checkedPassword = true;
+            System.out.println(userPassword);
             System.out.println(showFeedback(checkedPassword));
             return checkedPassword;
         }
+        System.out.println(userPassword);
         System.out.println(showFeedback(checkedPassword));
         return checkedPassword;
     }
@@ -42,6 +44,7 @@ public class ValidatePassword {
         }
         return "Invalid Password";
     }
+
     public boolean checkValidLength(String userPassword) {
         boolean valid = false;
         if (userPassword == null) {
@@ -49,6 +52,14 @@ public class ValidatePassword {
         }
         if (userPassword.length() > 8 && userPassword.length() < 25) {
             valid = true;
+        }
+        if (userPassword.length() <= 8){
+            System.out.println(userPassword);
+            System.out.println("Password is too short");
+        }
+        if (userPassword.length() >= 25){
+            System.out.println(userPassword);
+            System.out.println("Password is too long");
         }
         return valid;
     }
@@ -62,6 +73,8 @@ public class ValidatePassword {
             }
         }
         if (upperCaseCheck == 0 || upperCaseCheck == userPassword.length()) {
+            System.out.println(userPassword);
+            System.out.println("Password must contain uppercase Letters.");
             valid = false;
         }
         return valid;
@@ -83,6 +96,8 @@ public class ValidatePassword {
                 break;
             }
         }
+        System.out.println(userPassword);;
+        System.out.println("Password must contain uppercase & lowercase Letters.");
         return valid;
     }
 
@@ -95,15 +110,21 @@ public class ValidatePassword {
                 break;
             }
         }
+        if (!valid){
+            System.out.println(userPassword);
+            System.out.println("Password must contain numbers.");
+        }
+
         return valid;
     }
 
     public boolean hasAllowedSpecialCharacters(String userPassword) {
         boolean valid = false;
         String checkForSymbols = "";
-        checkForSymbols = userPassword.toLowerCase().replaceAll("[()#$?!%/@]+", "");
-        System.out.println(checkForSymbols);
+        checkForSymbols = userPassword.replaceAll("[()#$?!%/@]+", "");
         if (checkForSymbols.equals(userPassword)) {
+            System.out.println(userPassword);
+            System.out.println("Password must contain one of these ()#$?!%/@ letters.");
             return valid;
         }
         if (!checkForSymbols.equals("")) {
@@ -127,7 +148,8 @@ public class ValidatePassword {
                     if ((i + 2) < pw.length && Character.isDigit(pw[i + 2]) && secNumber - firstNumber == 1) {
                         thirdNumber = Character.getNumericValue(pw[i + 2]);
                         if (thirdNumber - secNumber == 1) {
-                            System.out.println("false pw");
+                            System.out.println(userPassword);
+                            System.out.println("Password must NOT contain more than two ascending numbers.");
                             return false;
                         }
                     }
@@ -148,6 +170,8 @@ public class ValidatePassword {
                     if ((i + 2) < pw.length && Character.isDigit(pw[i + 2]) && firstNumber - secNumber == 1) {
                         thirdNumber = Character.getNumericValue(pw[i + 2]);
                         if (secNumber - thirdNumber == 1) {
+                            System.out.println(userPassword);
+                            System.out.println("Password must NOT contain more than two descending numbers.");
                             return false;
                         }
                     }
@@ -166,6 +190,9 @@ public class ValidatePassword {
                 if (Character.isDigit(pw[i + 1]) && Character.getNumericValue(pw[i + 1]) == controlNumber) {
                     if (Character.isDigit(pw[i + 2]) && Character.getNumericValue(pw[i + 2]) == controlNumber) {
                         if ((i + 3) < pw.length && Character.isDigit(pw[i + 3]) && Character.getNumericValue(pw[i + 3]) == controlNumber) {
+                            System.out.println(userPassword);
+                            System.out.println("Password must NOT contain more than three same number in a row.");
+
                             return false;
                         }
                     }
