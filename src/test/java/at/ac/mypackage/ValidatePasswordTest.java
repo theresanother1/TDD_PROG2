@@ -38,7 +38,7 @@ public class ValidatePasswordTest {
     @DisplayName("Maximum length is not valid")
     public void testPasswordLengthMaximum2(){ assertFalse(testPassword.checkValidLength("thisisnotavalidlengthpassw")); }
 
-    //check for letters inside word
+    //check for letters inside word & upper-/lowercase Requirement
     @Test
     @DisplayName("Password has letter")
     public void testIfPasswordContainsLetters1(){
@@ -49,17 +49,15 @@ public class ValidatePasswordTest {
     public void testIfPasswordContainsLetters2(){
         assertFalse(testPassword.hasLetters("1856393@#"));
     }
-
-    //test for upper & lower case requirement
     @Test
     @DisplayName("This password has only lower case letters")
     public void testIfOnlyLowerCase(){
-        assertFalse(testPassword.hasUpperAndLowerCases("thisisabadpassword"));
+        assertFalse(testPassword.hasLetters("thisisabadpassword"));
     }
     @Test
     @DisplayName("This password has only upper case letters")
     public void testIfOnlyUpperCase() {
-        assertFalse(testPassword.hasUpperAndLowerCases("THISISABADPASSWORD"));
+        assertFalse(testPassword.hasLetters("THISISABADPASSWORD"));
     }
 
     //Test for number requirement

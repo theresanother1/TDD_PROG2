@@ -23,19 +23,17 @@ public class ValidatePassword {
     }
 
     public boolean checkPassword(String userPassword) {
-        boolean checkedPassword = false;
-        if (hasUpperAndLowerCases(userPassword) && checkValidLength(userPassword)
+        if (checkValidLength(userPassword)
                 && hasNumbers(userPassword) && hasAllowedSpecialCharacters(userPassword)
                 && checkForAscendingNumbers(userPassword) && checkForDescendingNumbers(userPassword)
                 && hasLessThanThreeSameNumbersInRow(userPassword)) {
-            checkedPassword = true;
             System.out.println(userPassword);
-            System.out.println(showFeedback(checkedPassword));
-            return checkedPassword;
+            System.out.println(showFeedback(true));
+            return true;
         }
         System.out.println(userPassword);
-        System.out.println(showFeedback(checkedPassword));
-        return checkedPassword;
+        System.out.println(showFeedback(false));
+        return false;
     }
 
     String showFeedback(boolean feedback){
@@ -53,29 +51,13 @@ public class ValidatePassword {
         if (userPassword.length() > 8 && userPassword.length() < 25) {
             valid = true;
         }
-        if (userPassword.length() <= 8){
+        else if (userPassword.length() <= 8){
             System.out.println(userPassword);
             System.out.println("Password is too short");
         }
         if (userPassword.length() >= 25){
             System.out.println(userPassword);
             System.out.println("Password is too long");
-        }
-        return valid;
-    }
-
-    public boolean hasUpperAndLowerCases(String userPassword) {
-        boolean valid = true;
-        int upperCaseCheck = 0;
-        for (int i = 0; i < userPassword.length(); i++) {
-            if (Character.isUpperCase(userPassword.charAt(i))) {
-                upperCaseCheck++;
-            }
-        }
-        if (upperCaseCheck == 0 || upperCaseCheck == userPassword.length()) {
-            System.out.println(userPassword);
-            System.out.println("Password must contain uppercase Letters.");
-            valid = false;
         }
         return valid;
     }
